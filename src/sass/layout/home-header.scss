@@ -118,6 +118,8 @@
 // for library
 
 .lib {
+    height: 230px;
+
     @media screen and (max-width: 767px) {
         background-image:
             linear-gradient(to bottom, rgba(0, 0, 0, 0.562), rgba(0, 0, 0, 0.568)),
