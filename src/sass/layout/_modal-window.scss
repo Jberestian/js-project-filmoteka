@@ -1,9 +1,22 @@
+body {
+    font-family: 'Roboto';
+}
+
 .modal-box {
+    position: relative;
+    top: 15%;
+
+
     padding: 40px 15px;
     width: 814px;
     height: 558px;
-    border: 2px solid black;
-    position: relative;
+    
+    background-color: #FFFFFF;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 100;
+
+    transition: 0.7s;
 }
 .modal {
     display: flex;
@@ -16,6 +29,8 @@
     height: 30px;
     top: 8px;
     right: 8px;
+    cursor: pointer;
+
 }
 .modal-image {
     background-color: aliceblue;
@@ -31,11 +46,14 @@
         font-weight: 500;
         font-size: 30px;
         line-height: 35px;
+
+        
     }
 }
 
 .modal-descr__list {
-    padding: 0;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .modal-descr__item {
@@ -68,6 +86,7 @@
     border-radius: 5px;
     min-width: 36px;
     text-align: center;
+    padding: 1px 0;
     
     &.vote {
         background-color: #FF6B01;
@@ -114,4 +133,26 @@
     color: #000000;
     border: 1px solid #000000;
     margin-left: 15px;
+}
+
+
+.backdrop {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+    visibility: hidden;
+    opacity: 0;
+
+}
+
+.backdrop.is-open {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-box.is-open {
+    visibility: visible;
+    opacity: 1;
 }
