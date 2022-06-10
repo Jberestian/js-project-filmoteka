@@ -1,0 +1,51 @@
+.footer {
+   background-color: #F7F7F7;
+
+   &__enter {
+    @media screen and (min-width: 768px) {
+        display: none;
+    }
+   }
+   
+   &__container {
+       display: flex;
+       flex-wrap: wrap;
+       justify-content: center;
+
+        @media screen and (min-width: 480px) {
+        padding: 29px 40px;
+        width: calc(80% - 20px);
+        }
+
+        @media screen and (min-width: 768px) {
+            padding: 30px;
+        }
+   }
+   &__text {
+        font-family: 'Roboto';
+        font-weight: 400;
+        text-align: center;
+        color: #545454;
+    
+        @media screen and (min-width: 480px) {
+            font-size: 14px;
+            line-height: 16px;
+        }
+
+        @media screen and (min-width: 768px) {
+            font-size: 16px;
+            line-height: 18.75px;
+        }
+
+   }
+
+   &__img {
+        width: 14px;
+        height: 14px;
+        margin-top: 10px;
+   }
+  
+   &__text-link {
+    text-decoration: underline;
+   }
+}
