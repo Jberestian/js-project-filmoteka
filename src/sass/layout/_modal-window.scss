@@ -2,10 +2,7 @@
     padding: 40px 15px;
     width: 814px;
     height: 558px;
-    border: 2px solid black;
     position: relative;
-body {
-    font-family: 'Roboto';
 }
 
 .modal-box {
@@ -41,7 +38,7 @@ body {
 .modal-image {
     background-color: aliceblue;
     height: 100%;
-    width: 375px;
+    max-width: 375px;
     margin-right: 16px;
 }
 .modal-descr {
@@ -144,7 +141,7 @@ body {
 
 
 .backdrop {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     top: 0;

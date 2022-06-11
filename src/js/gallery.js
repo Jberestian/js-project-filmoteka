@@ -16,7 +16,7 @@ filmsPromiseEl.then(result => {
   const films = result.data.results;
   searchFilms(films);
 
-  console.log(films);
+  // console.log(films);
 });
 
 
@@ -28,7 +28,7 @@ function searchFilms(films) {
         <li class="film__item">
           <img class="film__img" src="https://image.tmdb.org/t/p/w500/${
             film.poster_path
-          }" alt=${film.original_title}>
+          }" alt=${film.original_title} id="${film.id}">
           <h3 class="film__name">${film.title}</h3>
           <p class="film__genre">
             ${film.genre_ids}
