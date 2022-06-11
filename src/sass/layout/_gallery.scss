@@ -1,0 +1,41 @@
+.fifm {
+  &__section {
+  }
+}
+.film {
+  &__container {
+  }
+
+  &__list {
+  }
+
+  &__item {
+    margin-bottom: 20px;
+  }
+
+  &__img {
+    margin-bottom: 8px;
+  }
+
+  &__name {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    text-transform: uppercase;
+    color: $main-black-color;
+    margin-bottom: 5px;
+  }
+
+  &__genre,
+  &__year {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: $home-orange-color;
+  }
+
+  &__date-release {
+    padding-left: 3px;
+  }
+}
