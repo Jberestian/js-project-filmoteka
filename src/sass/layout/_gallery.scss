@@ -1,20 +1,23 @@
 .fifm {
-  // .fifm__section
-
   &__section {
   }
 }
 .film {
-  // .film__img
+  &__container {
+  }
+
+  &__list {
+  }
+
+  &__item {
+    margin-bottom: 20px;
+  }
 
   &__img {
     margin-bottom: 8px;
   }
 
-  // .film__name
-
   &__name {
-    font-family: 'Roboto';
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -24,21 +27,15 @@
     margin-bottom: 5px;
   }
 
-  // .film__genre
-
   &__genre,
   &__year {
-    font-family: 'Roboto';
-    font-style: normal;
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
     color: $home-orange-color;
   }
 
-  // .film__year
-
-  &__year {
+  &__date-release {
     padding-left: 3px;
   }
 }
