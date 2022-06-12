@@ -17,4 +17,14 @@
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    transition: 300ms;
+    // new hover
+    &:hover {
+        background: #ff9143;
+        transform: scale(1.1);
+    }
+    &:active {
+        background: #ffe9e9;
+        transform: translate(0em, 0.75em);
+    }
 }
