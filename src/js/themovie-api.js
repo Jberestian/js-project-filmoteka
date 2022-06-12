@@ -21,11 +21,11 @@ export class TheMovieApi {
     );
   }
 
-//   fetchGenresFilms() {
-//     return axios.get(
-//       `https://api.themoviedb.org/3/genre/movie/list?api_key=eed4f1d8aea9e26327c4f8a358313952&language=en-US`
-//     );
-//   }
+  fetchGenresFilms() {
+    return axios.get(
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=eed4f1d8aea9e26327c4f8a358313952&language=en-US`
+    );
+  }
 
   fetchSearchFilms(query) {
     return axios.get(`${this.#BASE_URL}earch/movie?api_key=${this.#API_KEY}&`, {
