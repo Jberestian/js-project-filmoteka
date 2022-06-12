@@ -39,6 +39,13 @@
   &__date-release {
     padding-left: 3px;
   }
+  &__rating {
+    color: #fff;
+    background-color: #FF6B01;
+    padding: 3px 6px;
+    border-radius: 6px;
+
+  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {

@@ -1,4 +1,3 @@
-'use strict';
 
 import { TheMovieApi } from './themovie-api';
 
@@ -10,6 +9,10 @@ const inModalEl = document.querySelector('.modal');
 
 const sectionGalleryEl = document.querySelector('.film__list');
 
+
+let idFilmsWatched = [];
+let idFilmsQueue = [];
+ 
 // Open modal
 
 const onClickGallery = event => {
@@ -88,6 +91,14 @@ const onClickGallery = event => {
     const onClickQueue = event => {
       localStorage.setItem(LOCAL_QUEUE, checkedItem);
     };
+        idFilmsWatched.push(checkedItem)
+        localStorage.setItem(LOCAL_WATCHED, idFilmsWatched);
+    }
+    const onClickQueue = event => {
+        idFilmsQueue.push(checkedItem)
+        localStorage.setItem(LOCAL_QUEUE, idFilmsQueue);
+    }
+
 
     btnWatchedEl.addEventListener('click', onClickWatched);
     btnQueueEl.addEventListener('click', onClickQueue);
@@ -109,11 +120,16 @@ function closeModal() {
   backdropEl.classList.remove('is-open');
   modalHomeEl.classList.remove('is-open');
 
+ 
   closeBtnEl.removeEventListener('click', onCloseModal);
   backdropEl.removeEventListener('click', onClickBackdrop);
 
   btnWatchedEl.removeEventListener('click', onClickWatched);
   btnQueueEl.removeEventListener('click', onClickQueue);
+
+    closeBtnEl.removeEventListener('click', onCloseModal);
+    backdropEl.removeEventListener('click', onClickBackdrop);
+ 
 }
 
 const onCloseModal = event => {
