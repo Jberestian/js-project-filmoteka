@@ -1,3 +1,9 @@
+.modal-box {
+    padding: 40px 15px;
+    width: 814px;
+    height: 558px;
+    border: 2px solid black;
+    position: relative;
 body {
     font-family: 'Roboto';
 }
@@ -52,6 +58,7 @@ body {
 }
 
 .modal-descr__list {
+    padding: 0;
     margin-bottom: 20px;
     margin-top: 20px;
 }

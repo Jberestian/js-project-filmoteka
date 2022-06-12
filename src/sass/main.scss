@@ -1,10 +1,11 @@
+@import './reset';
 @import './utils/variables';
 
 @import './base/common';
 @import './base/container';
 
 @import './components/button';
-
+@import './layout/library-header';
 @import './layout/home-header.scss';
 @import './layout/gallery';
 @import './layout/footer';
