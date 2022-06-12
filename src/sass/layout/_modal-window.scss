@@ -1,24 +1,20 @@
 .modal-box {
-  padding: 40px 15px;
-  width: 814px;
-  height: 558px;
-  border: 2px solid black;
-  position: relative;
+    padding: 40px 15px;
+    width: 814px;
+    height: 558px;
+    position: relative;
 }
 
 .modal-box {
   position: relative;
   top: 15%;
-
   padding: 40px 15px;
   width: 814px;
   height: 558px;
-
   background-color: #ffffff;
   visibility: hidden;
   opacity: 0;
   z-index: 100;
-
   transition: 0.7s;
 }
 .modal {
@@ -35,10 +31,10 @@
   cursor: pointer;
 }
 .modal-image {
-  background-color: aliceblue;
-  height: 100%;
-  width: 375px;
-  margin-right: 16px;
+    background-color: aliceblue;
+    height: 100%;
+    max-width: 375px;
+    margin-right: 16px;
 }
 .modal-descr {
   display: flex;
