@@ -4,8 +4,8 @@ const containerEl = document.querySelector('.film__container');
 const listEl = document.querySelector('.film__list');
 
 const theMovieApi = new TheMovieApi();
-
 const filmsPromiseEl = theMovieApi.fetchTrendsFilms();
+const filmsGenresEl = theMovieApi.fetchGenresFilms();
 
 // let movieId = [];
 
@@ -22,18 +22,34 @@ const filmsPromiseEl = theMovieApi.fetchTrendsFilms();
 // }
 // setGenres();
 
-
 filmsPromiseEl.then(result => {
   const films = result.data.results;
   trendsFilms(films);
 });
 
+// filmsGenresEl.then(response => {
+//   const genreResponse = response.data.genres;
+//   const genNameEl = genreResponse.map(genre => genre.name);
+//   const genIdEl = genreResponse.map(genre => genre.id);
+
+//   console.log(genNameEl);
+//   console.log(genIdEl);
+//   localStorage.setItem(genIdEl, genNameEl);
+// });
+
+function recievedGenres(genIdEl) {
+    // console.log(genNameEl);
+    // console.log(genIdEl);
+
+}
+
+// let movieGenre = movieId
+//   .filter(genre => genre_ids.includes(genre.id))
+//   .map(genre => genre.name)
+//   .join(', ');
+
 function trendsFilms(films) {
     
-//   let movieGenre = movieId
-//     .filter(genre => genre_ids.includes(genre.id))
-//     .map(genre => genre.name)
-//     .join(', ');
 
   const markupItems = films
     .map(film => {

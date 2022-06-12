@@ -23,7 +23,12 @@ export class TheMovieApi {
 
   fetchGenresFilms() {
     return axios.get(
-      `https://api.themoviedb.org/3/genre/movie/list?api_key=eed4f1d8aea9e26327c4f8a358313952&language=en-US`
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=eed4f1d8aea9e26327c4f8a358313952&language=en-US`,
+      {
+        params: {
+          name: this.name,
+        },
+      }
     );
   }
 
