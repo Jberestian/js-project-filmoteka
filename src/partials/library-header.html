@@ -1,22 +1,28 @@
 <div class="header lib">
     <div>
         <div class="header__navbar">
-            <div class="header__logo">
+            <a href="../src/index.html" class="header__logo">
                 <svg class="header__logo-svg">
                     <use href="../src/images/header/header.svg#icon-movie-icon"></use>
                 </svg>
                 <p class="header__logo-text">Filmoteka</p>
-            </div>
+            </a>
             <ul class="header__menu">
-                <li class="header__menu-item">Home</li>
-                <li class="header__menu-item is-active">My library</li>
+                <li class="header__menu-item"><a href="../src/index.html">Home</a></li>
+                <li class="header__menu-item is-active"><a href="../src/library.html">My library</a></li>
             </ul>
         </div>
-        <div class="buttons">
-            
+        <div class="header__buttons">
+            <div>
+                <button id="watched" type="button" class="btn btn-lib active">Watched</button>
+                <button id="queue" type="button" class="btn btn-lib">Queue</button>
+            </div>
         </div>
     </div>
 </div>
+
+
+<!-- 
 <section class="library">
    <div class="container">
        <ul class="library__list">
@@ -92,4 +98,4 @@
             </li>
        </ul>
    </div>
-</section>
+</section> -->

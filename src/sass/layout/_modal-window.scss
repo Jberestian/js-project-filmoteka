@@ -1,167 +1,139 @@
 .modal-box {
-    padding: 40px 15px;
-    width: 814px;
-    height: 558px;
-    border: 2px solid black;
-    position: relative;
-}
-
-body {
-    font-family: 'Roboto';
-}
-
-.modal-box {
-    position: relative;
-    top: 15%;
-
-
-    padding: 40px 15px;
-    width: 814px;
-    height: 558px;
-    
-    background-color: #FFFFFF;
-    visibility: hidden;
-    opacity: 0;
-    z-index: 100;
-
-    transition: 0.7s;
+  position: relative;
+  top: 15%;
+  padding: 40px 15px;
+  width: 814px;
+  height: 558px;
+  background-color: #ffffff;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 100;
+  transition: 0.7s;
 }
 .modal {
-    display: flex;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 .modal-close-icon {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    top: 8px;
-    right: 8px;
-    cursor: pointer;
-
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
 }
 .modal-image {
     background-color: aliceblue;
     height: 100%;
-    width: 375px;
+    max-width: 375px;
     margin-right: 16px;
 }
 .modal-descr {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    &__title {
-        font-weight: 500;
-        font-size: 30px;
-        line-height: 35px;
-
-        
-    }
+  &__title {
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 35px;
+  }
 }
 
 .modal-descr__list {
-    padding: 0;
-    margin-bottom: 20px;
-    margin-top: 20px;
+  padding: 0;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .modal-descr__item {
-    list-style: none;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  list-style: none;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    &-text {
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 16px;
-        color: #8C8C8C;
-    }
-
-    &-value {
-        display: flex;
-        width: 55%;
-        align-items: center;
-        text-transform: uppercase;
-
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 14px;
-        
-    }
-}
-.value-color {
-    border-radius: 5px;
-    min-width: 36px;
-    text-align: center;
-    padding: 1px 0;
-    
-    &.vote {
-        background-color: #FF6B01;
-        color: #FFFFFF;
-        margin-right: 5px;
-    }
-
-    &.votes {
-        background: #F7F7F7;
-        color: #000000;
-        margin-left: 5px;
-    }
-
-}
-
-
-
-
-.modal-about__title {
+  &-text {
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
+    color: #8c8c8c;
+  }
+
+  &-value {
+    display: flex;
+    width: 55%;
+    align-items: center;
     text-transform: uppercase;
-    margin-bottom: 8px;
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+.value-color {
+  border-radius: 5px;
+  min-width: 36px;
+  text-align: center;
+  padding: 1px 0;
+
+  &.vote {
+    background-color: #ff6b01;
+    color: #ffffff;
+    margin-right: 5px;
+  }
+
+  &.votes {
+    background: #f7f7f7;
+    color: #000000;
+    margin-left: 5px;
+  }
+}
+
+.modal-about__title {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
 }
 
 .modal-about-text {
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 20px;
-    max-width: 390px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  max-width: 390px;
 }
 
-
 .modal-btn-box {
-    display: flex;
-    margin-top: 20px;
-    margin-left: 8px;
-
+  display: flex;
+  margin-top: 20px;
+  margin-left: 8px;
 }
 
 .btn-modal {
-    background-color: #FFFFFF;
-    color: #000000;
-    border: 1px solid #000000;
-    margin-left: 15px;
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
+  margin-left: 15px;
 }
 
-
 .backdrop {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
-    visibility: hidden;
-    opacity: 0;
-
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  visibility: hidden;
+  opacity: 0;
 }
 
 .backdrop.is-open {
-    visibility: visible;
-    opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
 
 .modal-box.is-open {
-    visibility: visible;
-    opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
