@@ -10,8 +10,8 @@ const modalHomeEl = document.querySelector('.modal-box');
 const inModalEl = document.querySelector('.modal')
 
 const sectionGalleryEl = document.querySelector('.film__list');
-
-
+let idFilmsWatched = [];
+let idFilmsQueue = [];
 // Open modal
 
 const onClickGallery = event => {
@@ -96,13 +96,13 @@ const onClickGallery = event => {
     const LOCAL_QUEUE = "local-queue";
 
     const onClickWatched = event => {
-        localStorage.setItem(LOCAL_WATCHED, checkedItem);
+        idFilmsWatched.push(checkedItem)
+        localStorage.setItem(LOCAL_WATCHED, idFilmsWatched);
     }
     const onClickQueue = event => {
-        localStorage.setItem(LOCAL_QUEUE, checkedItem);
+        idFilmsQueue.push(checkedItem)
+        localStorage.setItem(LOCAL_QUEUE, idFilmsQueue);
     }
-
-
 
 
     btnWatchedEl.addEventListener('click', onClickWatched);
