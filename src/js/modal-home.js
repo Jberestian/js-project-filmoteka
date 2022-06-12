@@ -1,5 +1,3 @@
-'use strict'
-
 import { TheMovieApi } from './themovie-api';
 
 
@@ -130,9 +128,6 @@ function closeModal() {
 
     closeBtnEl.removeEventListener('click', onCloseModal);
     backdropEl.removeEventListener('click', onClickBackdrop);
-
-    btnWatchedEl.removeEventListener('click', onClickWatched);
-    btnQueueEl.removeEventListener('click', onClickQueue);
 }
 
 const onCloseModal = event => {

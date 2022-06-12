@@ -9,31 +9,31 @@ const filmsPromiseEl = theMovieApi.fetchTrendsFilms();
 
 // let movieId = [];
 
-function setGenres() {
-  let filmsGenres = theMovieApi
-    .fetchGenresFilms()
+// function setGenres() {
+//   let filmsGenres = theMovieApi
+//     .fetchGenresFilms()
 
-    .then(id => {
-      return (movieId = id.genres);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
-setGenres();
+//     .then(id => {
+//       return (movieId = id.genres);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// }
+// setGenres();
+
 
 filmsPromiseEl.then(result => {
   const films = result.data.results;
   trendsFilms(films);
-
-  // console.log(films);
 });
 
 function trendsFilms(films) {
-  // let movieGenre = movieId
-  // .filter((genre) => genre_ids.includes(genre.id))
-  // .map((genre) => genre.name)
-  // .join(", ");
+    
+//   let movieGenre = movieId
+//     .filter(genre => genre_ids.includes(genre.id))
+//     .map(genre => genre.name)
+//     .join(', ');
 
   const markupItems = films
     .map(film => {
