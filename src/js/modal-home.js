@@ -1,47 +1,39 @@
+
 import { TheMovieApi } from './themovie-api';
 
-
-const closeBtnEl = document.querySelector('.modal-close-icon')
+const closeBtnEl = document.querySelector('.modal-close-icon');
 
 const backdropEl = document.querySelector('.backdrop');
 const modalHomeEl = document.querySelector('.modal-box');
-const inModalEl = document.querySelector('.modal')
+const inModalEl = document.querySelector('.modal');
 
 const sectionGalleryEl = document.querySelector('.film__list');
+
+
 let idFilmsWatched = [];
 let idFilmsQueue = [];
+ 
 // Open modal
 
 const onClickGallery = event => {
+  backdropEl.classList.add('is-open');
+  modalHomeEl.classList.add('is-open');
 
+  closeBtnEl.addEventListener('click', onCloseModal);
+  backdropEl.addEventListener('click', onClickBackdrop);
 
-    backdropEl.classList.add('is-open');
-    modalHomeEl.classList.add('is-open');
+  const thisMovie = new TheMovieApi();
+  const filmsFindEl = thisMovie.fetchTrendsFilms();
 
-    closeBtnEl.addEventListener('click', onCloseModal);
-    backdropEl.addEventListener('click', onClickBackdrop);
+  const checkedItem = Number(event.target.id);
 
+  console.log(event.path[1]);
 
-    const thisMovie = new TheMovieApi();
-    const filmsFindEl = thisMovie.fetchTrendsFilms();
-
-    const checkedItem = Number(event.target.id);
-
-    console.log(event.path[1]);
-
-   filmsFindEl
-   .then(data => {
-
-
-
+  filmsFindEl.then(data => {
     const allFilms = data.data.results;
-    const findFilms = allFilms
-    .map(film => {
-        if(film.id === checkedItem) {
-        inModalEl.innerHTML =
-            `<img class="modal-image" src="https://image.tmdb.org/t/p/w500/${
-                film.poster_path
-              }" alt=${film.original_title}>
+    const findFilms = allFilms.map(film => {
+      if (film.id === checkedItem) {
+        inModalEl.innerHTML = `<img class="modal-image" src="https://image.tmdb.org/t/p/w500/${film.poster_path}" alt=${film.original_title}>
             <div class="modal-descr">
                 <h2 class="modal-descr__title">${film.title}</h2>
                 <ul class="modal-descr__list">
@@ -84,16 +76,21 @@ const onClickGallery = event => {
                 <button class="btn btn-modal js-add-queue" type="button">add to queue</button>
                 </div>
             
-            </div>`
-        };
+            </div>`;
+      }
     });
     const btnWatchedEl = document.querySelector('.js-add-watched');
     const btnQueueEl = document.querySelector('.js-add-queue');
 
-    const LOCAL_WATCHED = "local-watched";
-    const LOCAL_QUEUE = "local-queue";
+    const LOCAL_WATCHED = 'local-watched';
+    const LOCAL_QUEUE = 'local-queue';
 
     const onClickWatched = event => {
+      localStorage.setItem(LOCAL_WATCHED, checkedItem);
+    };
+    const onClickQueue = event => {
+      localStorage.setItem(LOCAL_QUEUE, checkedItem);
+    };
         idFilmsWatched.push(checkedItem)
         localStorage.setItem(LOCAL_WATCHED, idFilmsWatched);
     }
@@ -105,17 +102,14 @@ const onClickGallery = event => {
 
     btnWatchedEl.addEventListener('click', onClickWatched);
     btnQueueEl.addEventListener('click', onClickQueue);
-   });
+  });
 
-
-
-   
-    
-    document.addEventListener('keydown', event => {
-        if (event.code === 'Escape') {
-           return closeModal()
-        }});
-    return
+  document.addEventListener('keydown', event => {
+    if (event.code === 'Escape') {
+      return closeModal();
+    }
+  });
+  return;
 };
 
 sectionGalleryEl.addEventListener('click', onClickGallery);
@@ -123,26 +117,30 @@ sectionGalleryEl.addEventListener('click', onClickGallery);
 // Close modal
 
 function closeModal() {
-    backdropEl.classList.remove('is-open');
-    modalHomeEl.classList.remove('is-open');
+  backdropEl.classList.remove('is-open');
+  modalHomeEl.classList.remove('is-open');
+
+ 
+  closeBtnEl.removeEventListener('click', onCloseModal);
+  backdropEl.removeEventListener('click', onClickBackdrop);
+
+  btnWatchedEl.removeEventListener('click', onClickWatched);
+  btnQueueEl.removeEventListener('click', onClickQueue);
 
     closeBtnEl.removeEventListener('click', onCloseModal);
     backdropEl.removeEventListener('click', onClickBackdrop);
+ 
 }
 
 const onCloseModal = event => {
-  return  closeModal()
-}
-
-
+  return closeModal();
+};
 
 const onClickBackdrop = event => {
-
-    if (event.target.className === "backdrop is-open") {
-        return  closeModal()
-    }
-  return
-}
+  if (event.target.className === 'backdrop is-open') {
+    return closeModal();
+  }
+  return;
+};
 
 // Local-storage
-

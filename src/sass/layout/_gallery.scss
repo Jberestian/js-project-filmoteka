@@ -1,5 +1,6 @@
 .film {
   &__section {
+    padding: 60px 0;
   }
 }
 .film {
@@ -44,5 +45,39 @@
     padding: 3px 6px;
     border-radius: 6px;
 
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .film {
+    &__list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    &__item {
+      width: calc(45% - 10px);
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .film {
+    &__list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    &__item {
+      width: calc(33% - 10px);
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
