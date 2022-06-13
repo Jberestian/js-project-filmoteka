@@ -65,7 +65,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
-    transition: 0.7s;
+    // transition: 0.7s;
     z-index: 100;
     padding-left: 20px;
     padding-right: 20px;
@@ -145,6 +145,7 @@
     &__member-name {
         font-weight: 500;
         text-align: center;
+        
         
     }
 
