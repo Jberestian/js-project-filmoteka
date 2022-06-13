@@ -1,6 +1,5 @@
 import { TheMovieApi } from './themovie-api';
 
-
 const closeBtnEl = document.querySelector('.modal-close-icon')
 
 const backdropEl = document.querySelector('.backdrop');
@@ -126,6 +125,7 @@ sectionGalleryEl.addEventListener('click', onClickGallery);
 function closeModal() {
     backdropEl.classList.remove('is-open');
     modalHomeEl.classList.remove('is-open');
+
 
     closeBtnEl.removeEventListener('click', onCloseModal);
     backdropEl.removeEventListener('click', onClickBackdrop);

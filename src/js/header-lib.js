@@ -9,10 +9,8 @@ const filmsPromiseElq = theMovieApi.fetchTrendsFilms();
 
 const btnWatched = document.querySelector('#watched');
 const btnQueue = document.querySelector('#queue');
-const EMPTY = `<li>
-<img src="https://acegif.com/wp-content/uploads/upgifsok/tumbleweed-acegif-31.gif">
-<b>No films added :/</b>
-</li>`
+const btnClear = document.querySelector('#clear');
+const emptyTurn = document.querySelector('.empty__bg');
 
 btnWatched.disabled = true;
 showWatched();
@@ -20,18 +18,24 @@ showWatched();
 btnWatched.addEventListener('click', ev=>{
     btnQueue.disabled = false;
     btnWatched.disabled = true;
-    btnWatched.classList.add('active');
-    btnQueue.classList.remove('active')
+    btnQueue.classList.add('active');
+    btnWatched.classList.remove('active')
     showWatched();
 });
 btnQueue.addEventListener('click', ev=>{
     btnWatched.disabled = false;
     btnQueue.disabled = true;
-    btnQueue.classList.add('active');
-    btnWatched.classList.remove('active')
+    btnWatched.classList.add('active');
+    btnQueue.classList.remove('active')
     showQueue();
 })
-
+btnClear.addEventListener('click', e=>{
+    localStorage.clear('local-watched');
+    localStorage.clear('local-queue');
+    listEl.innerHTML = '';
+    emptyTurn.style.display = 'block'
+    console.log('cleared!');
+})
 
 
 function showWatched(){
@@ -56,10 +60,12 @@ function trendsFilms(films, typeOfstorage) {
     const markupItems = films
         .map(film => {
             if (localStorage.getItem('local-queue') == null) {
-                listEl.innerHTML = EMPTY;
+                listEl.innerHTML = '';
+                emptyTurn.style.display = 'block'
                 return;
             };
             if (localStorage.getItem(`local-${typeOfstorage}`).includes(film.id)) {
+                emptyTurn.style.display = 'none'
                 return `
                     <li class="film__item">
                     <img class="film__img" src="https://image.tmdb.org/t/p/w500/${film.poster_path

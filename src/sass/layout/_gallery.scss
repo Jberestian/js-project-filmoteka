@@ -2,6 +2,9 @@
   &__section {
     padding: 60px 0;
   }
+  &__section-lib {
+    padding: 60px 0;
+  }
 }
 .film {
   &__container {
@@ -55,7 +58,11 @@
       flex-wrap: wrap;
       justify-content: space-around;
     }
-
+    &__list-lib {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
     &__item {
       width: calc(45% - 10px);
     }
@@ -72,7 +79,11 @@
       flex-wrap: wrap;
       justify-content: space-around;
     }
-
+    &__list-lib {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
     &__item {
       width: calc(33% - 10px);
     }
