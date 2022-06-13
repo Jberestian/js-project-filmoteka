@@ -1,5 +1,7 @@
 // FOR LIBRARY
 import { TheMovieApi } from './themovie-api';
+import { getNumberFilms } from "./gallery";
+
 const listEl = document.querySelector('.film__list-lib');
 
 const theMovieApi = new TheMovieApi();
@@ -72,7 +74,10 @@ function trendsFilms(films, typeOfstorage) {
                     }" alt=${film.original_title} id="${film.id}">
                     <h3 class="film__name">${film.title}</h3>
                     <p class="film__genre">
-                    ${film.genre_ids}
+                    ${film.genre_ids.map(item => {
+                        item = getNumberFilms(item)
+                        return` ${item}`
+                       })}
                     <span class="film__date-release">| ${film.release_date.slice(
                     0,
                     4

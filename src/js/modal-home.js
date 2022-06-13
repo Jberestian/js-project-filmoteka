@@ -1,4 +1,5 @@
 import { TheMovieApi } from './themovie-api';
+import { getNumberFilms } from './gallery';
 
 const closeBtnEl = document.querySelector('.modal-close-icon');
 
@@ -12,7 +13,7 @@ let idFilmsWatched = [localStorage.getItem('local-watched')];
 let idFilmsQueue = [localStorage.getItem('local-queue')];
 // Open modal
 
-const onClickGallery = event => {
+export const onClickGallery = event => {
   backdropEl.classList.add('is-open');
   modalHomeEl.classList.add('is-open');
 
@@ -22,15 +23,16 @@ const onClickGallery = event => {
   const thisMovie = new TheMovieApi();
   const filmsFindEl = thisMovie.fetchTrendsFilms();
 
-  const checkedItem = Number(event.target.id);
-
-  console.log(event.path[1]);
+  const checkedItem = Number(event.currentTarget.id);
 
   filmsFindEl.then(data => {
     const allFilms = data.data.results;
+
     const findFilms = allFilms.map(film => {
       if (film.id === checkedItem) {
-        inModalEl.innerHTML = `<img class="modal-image" src="https://image.tmdb.org/t/p/w500/${film.poster_path}" alt=${film.original_title}>
+        inModalEl.innerHTML = `<img class="modal-image" src="https://image.tmdb.org/t/p/w500/${
+          film.poster_path
+        }" alt=${film.original_title}>
             <div class="modal-descr">
                 <h2 class="modal-descr__title">${film.title}</h2>
                 <ul class="modal-descr__list">
@@ -38,8 +40,12 @@ const onClickGallery = event => {
                     <li class="modal-descr__item">
                         <p class="modal-descr__item-text">Vote / Votes</p>
                         <p class="modal-descr__item-value">
-                            <span class="value-color vote js-vote">${film.vote_average}</span> /
-                            <span class="value-color votes js-votes">${film.vote_count}</span>
+                            <span class="value-color vote js-vote">${
+                              film.vote_average
+                            }</span> /
+                            <span class="value-color votes js-votes">${
+                              film.vote_count
+                            }</span>
                         </p>
                     </li>
     
@@ -47,12 +53,16 @@ const onClickGallery = event => {
      
                     <li class="modal-descr__item">
                         <p class="modal-descr__item-text">Popularity</p> 
-                        <p class="modal-descr__item-value js-popularity">${film.popularity}</p>
+                        <p class="modal-descr__item-value js-popularity">${
+                          film.popularity
+                        }</p>
                     </li>
     
                     <li class="modal-descr__item">
                         <p class="modal-descr__item-text">Original Title</p>
-                        <p class="modal-descr__item-value js-orig-title">${film.original_title}</p>
+                        <p class="modal-descr__item-value js-orig-title">${
+                          film.original_title
+                        }</p>
                     </li>
     
                     </li> 
@@ -60,7 +70,11 @@ const onClickGallery = event => {
                     
                     <li class="modal-descr__item">
                         <p class="modal-descr__item-text">Genre</p>
-                        <p class="modal-descr__item-value js-genre">${film.genre_ids}</p>
+                        <p class="modal-descr__item-value js-genre">
+                        ${film.genre_ids.map(item => {
+                          item = getNumberFilms(item);
+                          return ` ${item}`;
+                        })}</p>
                     </li>
     
                 </ul>
@@ -81,18 +95,45 @@ const onClickGallery = event => {
 
     const LOCAL_WATCHED = 'local-watched';
     const LOCAL_QUEUE = 'local-queue';
+    console.log(localStorage.getItem(LOCAL_WATCHED));
 
+    // if (localStorage.getItem(LOCAL_WATCHED).includes(checkedItem)) {
+
+    //     const onRemoveWatched = event => {
+    //         console.log(JSON.stringify(checkedItem));
+
+    //     const indexOfLocalItem =  localStorage.getItem(LOCAL_WATCHED).indexOf(checkedItem)
+
+    //     idFilmsWatched.splice(indexOfLocalItem, 1)
+    //     console.log(idFilmsWatched);
+
+    //     btnWatchedEl.removeEventListener('click', onRemoveWatched);
+
+    //     }
+    //     const onRemoveQueue = event => {
+    //         localStorage.removeItem(LOCAL_QUEUE, checkedItem)
+    //         btnQueueEl.removeEventListener('click', onRemoveQueue);
+    //     }
+
+    //     btnWatchedEl.addEventListener('click', onRemoveWatched);
+    //     btnQueueEl.addEventListener('click', onRemoveQueue);
+
+    // }
+    // else {
     const onClickWatched = event => {
       idFilmsWatched.push(checkedItem);
       localStorage.setItem(LOCAL_WATCHED, idFilmsWatched);
+      btnWatchedEl.removeEventListener('click', onClickWatched);
     };
     const onClickQueue = event => {
       idFilmsQueue.push(checkedItem);
       localStorage.setItem(LOCAL_QUEUE, idFilmsQueue);
+      btnQueueEl.removeEventListener('click', onClickQueue);
     };
 
     btnWatchedEl.addEventListener('click', onClickWatched);
     btnQueueEl.addEventListener('click', onClickQueue);
+    // }
   });
 
   document.addEventListener('keydown', event => {
@@ -100,10 +141,9 @@ const onClickGallery = event => {
       return closeModal();
     }
   });
-  return;
 };
 
-sectionGalleryEl.addEventListener('click', onClickGallery);
+// sectionGalleryEl.addEventListener('click', onClickGallery);
 
 // Close modal
 
