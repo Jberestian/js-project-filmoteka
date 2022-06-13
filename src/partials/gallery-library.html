@@ -1,14 +1,59 @@
 <div class="container">
-  <section class="film__section-lib">
-    <div class="film__container-lib">
-      <ul class="film__list-lib">
-        <li>
-          <img
-            src="https://acegif.com/wp-content/uploads/upgifsok/tumbleweed-acegif-31.gif"
-          />
-        </li>
-      </ul>
-    </div>
-    <div class="pagination"></div>
-  </section>
-</div>
+    <section class="film__section-lib">
+      <div class="film__container-lib">
+        <ul class="film__list-lib"></ul> 
+        <div class="empty__bg">
+          <p class="empty__text">Please select some films...</p>
+          <div class="empty__pole">
+          </div>
+        </div>
+        <style>
+            .empty__text {
+              text-align: center;
+              font-size: 48;
+              color: rgb(56, 56, 56);
+            }
+            .empty__bg {
+                margin: 20px auto;
+                max-width: 700px;
+                height: calc(100vh / 2);
+                background-image: url('./images/header/perekatipole-bg.jpg');
+                background-position: 0px -180px;
+                position: relative;
+            }
+            .empty__pole {
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                left: 10px;
+                top: 105px;
+                background-size: contain;
+                background-image: url('./images/header/kisspng-tumbleweed-drawing-clip-art-black-ink-5ae08d04e700f6.4196851615246656049462.png');
+                animation: moving 30s infinite;
+            }
+            @keyframes moving {
+                0% {
+                    left: 230px;
+                    transform: rotate(0deg);
+                }
+                50% {
+                    left: 460px;
+                    transform: rotate(500deg);
+                }
+                100% {
+                    left: 10px;
+                    transform: rotate(0deg);
+                }
+            }
+            /* disables animation on small screens */
+            @media screen and (max-width: 750px) {
+              .empty__pole {
+                animation: none;
+              }
+            }
+        </style>
+        </div>
+      <div class="pagination"></div>
+    </section>
+  </div>
+  
