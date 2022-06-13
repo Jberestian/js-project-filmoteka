@@ -1,4 +1,3 @@
-
 import { TheMovieApi } from './themovie-api';
 
 const closeBtnEl = document.querySelector('.modal-close-icon')
@@ -127,7 +126,8 @@ function closeModal() {
     backdropEl.classList.remove('is-open');
     modalHomeEl.classList.remove('is-open');
 
-closeBtnEl.removeEventListener('click', onCloseModal);
+
+    closeBtnEl.removeEventListener('click', onCloseModal);
     backdropEl.removeEventListener('click', onClickBackdrop);
 
     btnWatchedEl.removeEventListener('click', onClickWatched);
