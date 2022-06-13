@@ -188,3 +188,51 @@
     background-color: transparent;
     border: 1px solid #fff;
 }
+
+// for empty
+.empty {
+    &__text {
+        text-align: center;
+        font-size: 48;
+        color: rgb(56, 56, 56);
+    }
+    &__bg {
+        margin: 20px auto;
+        max-width: 700px;
+        height: calc(100vh / 2);
+        background-image: url('../images/header/perekatipole-bg.jpg');
+        background-position: 0px -180px;
+        position: relative;
+    }
+    &__pole {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        left: 10px;
+        top: 105px;
+        background-size: contain;
+        background-image: url('../images/header/kisspng-tumbleweed-drawing-clip-art-black-ink-5ae08d04e700f6.4196851615246656049462.png');
+        animation: moving 30s infinite;
+    }
+    @keyframes moving {
+        0% {
+            left: 230px;
+            transform: rotate(0deg);
+        }
+        50% {
+            left: 460px;
+            transform: rotate(500deg);
+        }
+        100% {
+            left: 10px;
+            transform: rotate(0deg);
+        }
+    }
+    /* disables animation on small screens */
+    @media screen and (max-width: 750px) {
+        &__pole {
+        animation: none;
+        }
+    }
+}
+

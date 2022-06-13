@@ -34,21 +34,16 @@ btnClear.addEventListener('click', e=>{
     localStorage.clear('local-queue');
     listEl.innerHTML = '';
     emptyTurn.style.display = 'block'
-    console.log('cleared!');
 })
 
 
 function showWatched(){
-    console.log('showing watched...');
-    console.log(localStorage.getItem('local-watched'));
     filmsPromiseElw.then(result => {
         const films = result.data.results;
         trendsFilms(films, 'watched');
       });      
 }
 function showQueue(){
-    console.log('showing queue...');
-    console.log(localStorage.getItem('local-queue'));
     filmsPromiseElq.then(result => {
         const films = result.data.results;
         trendsFilms(films, 'queue');
