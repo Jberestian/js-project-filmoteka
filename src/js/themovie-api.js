@@ -33,9 +33,14 @@ export class TheMovieApi {
   }
 
   fetchSearchFilms(query) {
-    return axios.get(`${this.#BASE_URL}earch/movie?api_key=${this.#API_KEY}&`, {
-      params: query,
-      page: this.page,
-    });
+    return axios.get(
+      `${this.#BASE_URL}search/movie?api_key=${this.#API_KEY}&`,
+      {
+        params: {
+          query: this.searchQuery,
+          page: this.page,
+        },
+      }
+    );
   }
 }

@@ -2,10 +2,16 @@ import { TheMovieApi } from './themovie-api';
 
 const containerEl = document.querySelector('.film__container');
 const listEl = document.querySelector('.film__list');
+const inputFormEl = document.querySelector('.js-search-form');
+const errorEl = document.querySelector('header__input-error');
 
 const theMovieApi = new TheMovieApi();
 const filmsPromiseEl = theMovieApi.fetchTrendsFilms();
 const filmsGenresEl = theMovieApi.fetchGenresFilms();
+
+const searchFilmsel = theMovieApi.fetchSearchFilms();
+
+
 
 // let movieId = [];
 
