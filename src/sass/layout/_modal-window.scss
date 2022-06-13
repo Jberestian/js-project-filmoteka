@@ -62,7 +62,7 @@
 
   &-value {
     display: flex;
-    width: 55%;
+    width: 60%;
     align-items: center;
     text-transform: uppercase;
 
@@ -103,6 +103,8 @@
   font-size: 12px;
   line-height: 20px;
   max-width: 390px;
+  overflow: auto;
+  max-height: 170px;
 }
 
 .modal-btn-box {
