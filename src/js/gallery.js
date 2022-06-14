@@ -1,5 +1,6 @@
 import { TheMovieApi } from './themovie-api';
 import { onClickGallery } from './modal-home';
+import { createPagination } from './pagination';
 import { changeData } from '../index';
 
 const containerEl = document.querySelector('.film__container');
@@ -32,6 +33,7 @@ const onSubmitSearchFilms = async event => {
 
     // console.log(data.results);
 
+
     if (data.total_pages === 0) {
       // errorEl.style.opacity = 1;
     } else {
@@ -50,6 +52,31 @@ inputFormEl.addEventListener('input', onSubmitSearchFilms);
 filmsPromiseEl.then(result => {
   const films = result.data.results;
   trendsFilms(films);
+  // console.log(result);
+
+  const pagination = createPagination({
+    totalItems: result.data.total_results,
+    totalPages: result.data.total_pages,
+    page: result.data.page,
+  });
+
+  pagination.on('afterMove', event => {
+    const currentPage = event.page;
+    // theMovieApi.page = currentPage;
+    // theMovieApi.incrementPage();
+
+    console.log(currentPage);
+    theMovieApi
+      .fetchTrendsFilms(event.page)
+      .then(result => {
+        trendsFilms(films);
+        console.log(films);
+        return;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  });
 });
 
 filmsGenresEl.then(response => {
