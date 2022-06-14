@@ -33,15 +33,13 @@ export class TheMovieApi {
   }
 
   fetchSearchFilms(query) {
-    return axios.get(
-      `${this.#BASE_URL}search/movie?api_key=${this.#API_KEY}&`,
-      {
-        params: query,
+ 
+    return axios.get(`${this.#BASE_URL}search/movie?api_key=${this.#API_KEY}`, {
+      parems: {
+        query: this.searchQuery,
         page: this.page,
-      }
-    );
-  }
-  incrementPage() {
-    this.page += 1;
+      },
+    });
+
   }
 }
