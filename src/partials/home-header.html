@@ -1,19 +1,38 @@
 <header class="header">
-    <div>
-        <div class="header__navbar">
-            <a href="../src/index.html" class="header__logo">
-                <svg class="header__logo-svg">
-                    <use href="../src/images/header/header.svg#icon-movie-icon"></use>
-                </svg>
-                <p class="header__logo-text">Filmoteka</p>
-            </a>
-            <ul class="header__menu">
-                <li class="header__menu-item is-active"><a href="../src/index.html">Home</a></li>
-                <li class="header__menu-item"><a href="../src/library.html">My library</a></li>
-            </ul>
-        </div>
-        <input type="text" class="header__input" placeholder="Поиск фильмов">
-        <p class="header__input-error" style="visibility: hidden">Search result not successful. Enter the correct movie name and try again.</p>
+  <div>
+    <div class="header__navbar">
+      <a href="../src/index.html" class="header__logo">
+        <svg class="header__logo-svg">
+          <use href="../src/images/header/header.svg#icon-movie-icon"></use>
+        </svg>
+        <p class="header__logo-text">Filmoteka</p>
+      </a>
+      <ul class="header__menu">
+        <li class="header__menu-item is-active">
+          <a href="../src/index.html">Home</a>
+        </li>
+        <li class="header__menu-item">
+          <a href="../src/library.html">My library</a>
+        </li>
+      </ul>
     </div>
-    <!-- <script src="./js/header-main.js"></script> -->
+    <form action="" class="js-search-form">
+      <input
+        type="text"
+        class="header__input"
+        placeholder="Поиск фильмов"
+        name="searchQuery"
+        autocomplete="off"
+      />
+      <button class="search__film-btn" type="submit"></button>
+      <p
+        class="header__input-error"
+        style="visibility: hidden"
+        aria-hidden="true"
+      >
+        Search result not successful. Enter the correct movie name and try
+        again.
+      </p>
+    </form>
+  </div>
 </header>

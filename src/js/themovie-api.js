@@ -10,12 +10,12 @@ export class TheMovieApi {
     this.searchQuery = '';
   }
 
-  fetchTrendsFilms() {
+  fetchTrendsFilms(pages) {
     return axios.get(
       `${this.#BASE_URL}trending/movie/day?api_key=${this.#API_KEY}`,
       {
         params: {
-          page: this.page,
+          page: pages,
         },
       }
     );
@@ -33,9 +33,13 @@ export class TheMovieApi {
   }
 
   fetchSearchFilms(query) {
-    return axios.get(`${this.#BASE_URL}earch/movie?api_key=${this.#API_KEY}&`, {
-      params: query,
-      page: this.page,
+ 
+    return axios.get(`${this.#BASE_URL}search/movie?api_key=${this.#API_KEY}`, {
+      parems: {
+        query: this.searchQuery,
+        page: this.page,
+      },
     });
+
   }
 }
