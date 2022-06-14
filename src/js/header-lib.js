@@ -1,6 +1,7 @@
 // FOR LIBRARY
 import { TheMovieApi } from './themovie-api';
 import { getNumberFilms } from "./gallery";
+import { onClickGallery } from "./modal-home";
 
 const listEl = document.querySelector('.film__list-lib');
 
@@ -64,7 +65,7 @@ function trendsFilms(films, typeOfstorage) {
             if (localStorage.getItem(`local-${typeOfstorage}`).includes(film.id)) {
                 emptyTurn.style.display = 'none'
                 return `
-                    <li class="film__item">
+                    <li class="film__item" id="${film.id}">
                     <img class="film__img" src="https://image.tmdb.org/t/p/w500/${film.poster_path
                     }" alt=${film.original_title} id="${film.id}">
                     <h3 class="film__name">${film.title}</h3>
@@ -84,4 +85,6 @@ function trendsFilms(films, typeOfstorage) {
         })
     .join('');
   listEl.insertAdjacentHTML('beforeend', markupItems);
+  const filmsChecks = document.querySelectorAll('.film__item')
+  filmsChecks.forEach(film => film.addEventListener('click', onClickGallery))
 }
