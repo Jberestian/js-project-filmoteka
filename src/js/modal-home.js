@@ -1,5 +1,7 @@
 import { TheMovieApi } from './themovie-api';
 import { getNumberFilms } from './gallery';
+import { onWatchedClick } from "./modal-search";
+import { onQueueClick } from "./modal-search";
 
 const closeBtnEl = document.querySelector('.modal-close-icon');
 
@@ -9,8 +11,7 @@ const inModalEl = document.querySelector('.modal');
 
 const sectionGalleryEl = document.querySelector('.film__list');
 
-let idFilmsWatched = [localStorage.getItem('local-watched')];
-let idFilmsQueue = [localStorage.getItem('local-queue')];
+
 // Open modal
 
 export const onClickGallery = event => {
@@ -84,7 +85,7 @@ export const onClickGallery = event => {
             
                 <div class="modal-btn-box">
                 <button class="btn js-add-watched" type="button">add to Watched</button>
-                <button class="btn btn-modal js-add-queue" type="button">add to queue</button>
+                <button class="btn btn-modal js-add-queue" type="button">add to Queue</button>
                 </div>
             
             </div>`;
@@ -95,45 +96,11 @@ export const onClickGallery = event => {
 
     const LOCAL_WATCHED = 'local-watched';
     const LOCAL_QUEUE = 'local-queue';
-    console.log(localStorage.getItem(LOCAL_WATCHED));
 
-    // if (localStorage.getItem(LOCAL_WATCHED).includes(checkedItem)) {
 
-    //     const onRemoveWatched = event => {
-    //         console.log(JSON.stringify(checkedItem));
+    onWatchedClick(checkedItem)
+    onQueueClick(checkedItem)
 
-    //     const indexOfLocalItem =  localStorage.getItem(LOCAL_WATCHED).indexOf(checkedItem)
-
-    //     idFilmsWatched.splice(indexOfLocalItem, 1)
-    //     console.log(idFilmsWatched);
-
-    //     btnWatchedEl.removeEventListener('click', onRemoveWatched);
-
-    //     }
-    //     const onRemoveQueue = event => {
-    //         localStorage.removeItem(LOCAL_QUEUE, checkedItem)
-    //         btnQueueEl.removeEventListener('click', onRemoveQueue);
-    //     }
-
-    //     btnWatchedEl.addEventListener('click', onRemoveWatched);
-    //     btnQueueEl.addEventListener('click', onRemoveQueue);
-
-    // }
-    // else {
-    const onClickWatched = event => {
-      idFilmsWatched.push(checkedItem);
-      localStorage.setItem(LOCAL_WATCHED, idFilmsWatched);
-      btnWatchedEl.removeEventListener('click', onClickWatched);
-    };
-    const onClickQueue = event => {
-      idFilmsQueue.push(checkedItem);
-      localStorage.setItem(LOCAL_QUEUE, idFilmsQueue);
-      btnQueueEl.removeEventListener('click', onClickQueue);
-    };
-
-    btnWatchedEl.addEventListener('click', onClickWatched);
-    btnQueueEl.addEventListener('click', onClickQueue);
-    // }
   });
 
   document.addEventListener('keydown', event => {
@@ -147,7 +114,7 @@ export const onClickGallery = event => {
 
 // Close modal
 
-function closeModal() {
+export function closeModal() {
   backdropEl.classList.remove('is-open');
   modalHomeEl.classList.remove('is-open');
 

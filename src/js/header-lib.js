@@ -1,6 +1,8 @@
 // FOR LIBRARY
 import { TheMovieApi } from './themovie-api';
-import { getNumberFilms } from './gallery';
+import { getNumberFilms } from "./gallery";
+import { onClickGallery } from "./modal-home";
+
 
 const listEl = document.querySelector('.film__list-lib');
 
@@ -55,21 +57,19 @@ function showQueue() {
 }
 
 function trendsFilms(films, typeOfstorage) {
-  listEl.innerHTML = '';
-  const markupItems = films
-    .map(film => {
-      if (localStorage.getItem('local-queue') == null) {
-        listEl.innerHTML = '';
-        emptyTurn.style.display = 'block';
-        return;
-      }
-      if (localStorage.getItem(`local-${typeOfstorage}`).includes(film.id)) {
-        emptyTurn.style.display = 'none';
-        return `
-                    <li class="film__item">
-                    <img class="film__img" src="https://image.tmdb.org/t/p/w500/${
-                      film.poster_path
-                    }" alt=${film.original_title} id="${film.id}">
+    listEl.innerHTML = '';
+    const markupItems = films
+        .map(film => {
+            if (localStorage.getItem('local-queue') == null) {
+                listEl.innerHTML = '';
+                emptyTurn.style.display = 'block'
+                return;
+            };
+            if (localStorage.getItem(`local-${typeOfstorage}`).includes(film.id)) {
+                emptyTurn.style.display = 'none'
+                return `
+                    <li class="film__item" id="${film.id}">
+                    <img class="film__img" src="https://image.tmdb.org/t/p/w500/${film.poster_path}" alt=${film.original_title} id="${film.id}">
                     <h3 class="film__name">${film.title}</h3>
                     <p class="film__genre">
                     ${film.genre_ids.map(item => {
@@ -87,4 +87,6 @@ function trendsFilms(films, typeOfstorage) {
     })
     .join('');
   listEl.insertAdjacentHTML('beforeend', markupItems);
+  const filmsChecks = document.querySelectorAll('.film__item')
+  filmsChecks.forEach(film => film.addEventListener('click', onClickGallery))
 }
