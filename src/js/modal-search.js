@@ -18,7 +18,7 @@ export function onWatchedClick(checkedItem) {
         idFilmsWatched.push(checkedItem);
         localStorage.setItem(LOCAL_WATCHED, JSON.stringify(idFilmsWatched));
         btnWatchedEl.removeEventListener('click', onNullWatched);
-        Notiflix.Report.success('Класс!', 'Вы добавили фильм в библиотеку, раздел Watched', 'Продолжить');
+        Notiflix.Report.success('Класс!', 'Вы добавили фильм в библиотеку, раздел Watched!', 'Продолжить');
         return closeModal()
       };
 btnWatchedEl.addEventListener('click', onNullWatched);
@@ -33,7 +33,7 @@ btnWatchedEl.addEventListener('click', onNullWatched);
             idFilmsWatched.push(checkedItem);
             localStorage.setItem(LOCAL_WATCHED, JSON.stringify(idFilmsWatched));
             btnWatchedEl.removeEventListener('click', onClickWatched);
-            Notiflix.Report.success('Класс!', 'Вы добавили фильм в библиотеку, раздел Watched', 'Продолжить');
+            Notiflix.Report.success('Класс!', 'Вы добавили фильм в библиотеку, раздел Watched!', 'Продолжить');
             return closeModal()
         }
 btnWatchedEl.addEventListener('click', onClickWatched);
@@ -49,10 +49,9 @@ btnWatchedEl.addEventListener('click', onClickWatched);
           idFilmsWatched = JSON.parse(localStorage.getItem(LOCAL_WATCHED));
           const indexOfWatched =  idFilmsWatched.indexOf(checkedItem);
           idFilmsWatched.splice(indexOfWatched, 1)
-          console.log(idFilmsWatched);
           localStorage.setItem(LOCAL_WATCHED, JSON.stringify(idFilmsWatched))
           btnWatchedEl.removeEventListener('click', onRemoveWatched);
-          Notiflix.Report.warning('Оу!', 'Вы удалили фильм из библиотеки, раздел Watched', 'Продолжить');
+          Notiflix.Report.warning('Оу!', 'Вы удалили фильм из библиотеки, раздел Watched!', 'Продолжить');
           return closeModal()
 
           }
@@ -70,7 +69,7 @@ export function onQueueClick(checkedItem) {
           idFilmsQueue.push(checkedItem);
           localStorage.setItem(LOCAL_QUEUE, JSON.stringify(idFilmsQueue));
           btnQueueEl.removeEventListener('click', onClickQueue);
-          Notiflix.Report.success('Класс!', 'Вы добавили фильм в библиотеку, раздел Queue', 'Продолжить');
+          Notiflix.Report.success('Класс!', 'Вы добавили фильм в библиотеку, раздел Queue!', 'Продолжить');
           return closeModal()
         };
     btnQueueEl.addEventListener('click', onClickQueue);
@@ -84,7 +83,7 @@ export function onQueueClick(checkedItem) {
             idFilmsQueue.push(checkedItem);
             localStorage.setItem(LOCAL_QUEUE, JSON.stringify(idFilmsQueue));
             btnQueueEl.removeEventListener('click', onClickQueue);
-            Notiflix.Report.success('Класс!', 'Вы добавили фильм в библиотеку, раздел Queue', 'Продолжить');
+            Notiflix.Report.success('Класс!', 'Вы добавили фильм в библиотеку, раздел Queue!', 'Продолжить');
             return closeModal()
         }
 btnQueueEl.addEventListener('click', onClickQueue);
@@ -103,7 +102,7 @@ btnQueueEl.addEventListener('click', onClickQueue);
 
           localStorage.setItem(LOCAL_QUEUE, JSON.stringify(idFilmsQueue))
           btnQueueEl.removeEventListener('click', onRemoveQueue);
-          Notiflix.Report.warning('Оу!', 'Вы удалили фильм из библиотеки, раздел Queue', 'Продолжить');
+          Notiflix.Report.warning('Оу!', 'Вы удалили фильм из библиотеки, раздел Queue!', 'Продолжить');
           return closeModal()
         }
 btnQueueEl.addEventListener('click', onRemoveQueue);

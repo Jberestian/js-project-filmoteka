@@ -3,7 +3,6 @@ import axios from 'axios';
 export class TheMovieApi {
   #BASE_URL = 'https://api.themoviedb.org/3/';
   #API_KEY = 'eed4f1d8aea9e26327c4f8a358313952';
-  //   #API_IMG = 'https://image.tmdb.org/t/p/w500/';
 
   constructor() {
     this.page = 1;
@@ -35,8 +34,8 @@ export class TheMovieApi {
   fetchSearchFilms(query) {
  
     return axios.get(`${this.#BASE_URL}search/movie?api_key=${this.#API_KEY}`, {
-      parems: {
-        query: this.searchQuery,
+      params: {
+        query: query,
         page: this.page,
       },
     });
