@@ -39,6 +39,8 @@ const onSubmitSearchFilms = event => {
 };
 
 inputFormEl.addEventListener('input', onSubmitSearchFilms);
+export let numberPage = 1;
+
 
 filmsPromiseEl.then(result => {
   const films = result.data;
@@ -52,7 +54,8 @@ filmsPromiseEl.then(result => {
 
   pagination.on('afterMove', event => {
     let currentPage = event.page;
-    console.log(event);
+    numberPage = event.page;
+
 
     theMovieApi
     .fetchTrendsFilms(currentPage)
@@ -61,7 +64,6 @@ filmsPromiseEl.then(result => {
         listEl.innerHTML = '';
         window.scrollTo(0, 0)
         trendsFilms(paginationFilms);
-        currentPage += 1
         return;
       })
       .catch(error => {
@@ -79,16 +81,17 @@ filmsGenresEl.then(response => {
   localStorage.setItem('name', genNameEl);
 });
 
-const idOfFilms = localStorage.getItem('id').split(',');
-const nameOfGenres = localStorage.getItem('name').split(',');
 
 export function getNumberFilms(item) {
+  const idOfFilms = localStorage.getItem('id').split(',');
+  const nameOfGenres = localStorage.getItem('name').split(',');
+
   const numbersId = idOfFilms.indexOf(`${item}`);
   return nameOfGenres[numbersId];
 }
 
 function trendsFilms(films) {
-  
+  console.log(films);
   if (films.total_results === 20000) {
     films = films.results
   const markupItems = films

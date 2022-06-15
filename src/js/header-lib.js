@@ -1,7 +1,9 @@
 // FOR LIBRARY
 import { TheMovieApi } from './themovie-api';
 import { getNumberFilms } from "./gallery";
-import { onClickGallery } from "./modal-home";
+import { searchFilmsFunction } from "./modal-home";
+import { onCloseModal } from "./modal-home";
+import { onClickBackdrop } from "./modal-home";
 
 
 const listEl = document.querySelector('.film__list-lib');
@@ -10,6 +12,8 @@ const theMovieApi = new TheMovieApi();
 
 const filmsPromiseElw = theMovieApi.fetchTrendsFilms();
 const filmsPromiseElq = theMovieApi.fetchTrendsFilms();
+
+
 
 const btnWatched = document.querySelector('#watched');
 const btnQueue = document.querySelector('#queue');
@@ -20,6 +24,7 @@ btnWatched.disabled = true;
 showWatched();
 
 btnWatched.addEventListener('click', ev => {
+  console.log('hhh');
   btnQueue.disabled = false;
   btnWatched.disabled = true;
   btnQueue.classList.add('active');
@@ -34,10 +39,8 @@ btnQueue.addEventListener('click', ev => {
   showQueue();
 });
 btnClear.addEventListener('click', e => {
-  // localStorage.clear('local-watched');
-  localStorage.setItem('local-watched', []);
-  // localStorage.clear('local-queue');
-  localStorage.setItem('local-queue', []);
+  localStorage.removeItem('local-watched');
+  localStorage.removeItem('local-queue');
 
   listEl.innerHTML = '';
   emptyTurn.style.display = 'block';
@@ -57,15 +60,16 @@ function showQueue() {
 }
 
 function trendsFilms(films, typeOfstorage) {
+  console.log(films);
     listEl.innerHTML = '';
     const markupItems = films
         .map(film => {
-            if (localStorage.getItem('local-queue') == null) {
+            if (JSON.parse(localStorage.getItem(`local-${typeOfstorage}`)) === null) {
                 listEl.innerHTML = '';
                 emptyTurn.style.display = 'block'
                 return;
-            };
-            if (localStorage.getItem(`local-${typeOfstorage}`).includes(film.id)) {
+            }
+            else if (JSON.parse(localStorage.getItem(`local-${typeOfstorage}`)).includes(film.id)) {
                 emptyTurn.style.display = 'none'
                 return `
                     <li class="film__item" id="${film.id}">
@@ -88,5 +92,30 @@ function trendsFilms(films, typeOfstorage) {
     .join('');
   listEl.insertAdjacentHTML('beforeend', markupItems);
   const filmsChecks = document.querySelectorAll('.film__item')
-  filmsChecks.forEach(film => film.addEventListener('click', onClickGallery))
+
+  const onClickLib = event => {
+    const closeBtnEl = document.querySelector('.modal-close-icon');
+
+    const backdropEl = document.querySelector('.backdrop');
+    const modalHomeEl = document.querySelector('.modal-box');
+    
+    backdropEl.classList.add('is-open');
+    modalHomeEl.classList.add('is-open');
+
+    closeBtnEl.addEventListener('click', onCloseModal);
+    backdropEl.addEventListener('click', onClickBackdrop);
+
+    const theMovieApi = new TheMovieApi();
+    const filmsPromiseEl = theMovieApi.fetchTrendsFilms();
+
+    const checkedItem = Number(event.currentTarget.id);
+
+    filmsPromiseEl.then(data => {
+      console.log(data);
+      const allFilms = data.data.results;
+      searchFilmsFunction(allFilms, checkedItem)
+    })
+  }
+
+  filmsChecks.forEach(film => film.addEventListener('click', onClickLib))
 }

@@ -2,6 +2,7 @@ import { TheMovieApi } from './themovie-api';
 import { getNumberFilms } from './gallery';
 import { onWatchedClick } from "./modal-search";
 import { onQueueClick } from "./modal-search";
+import { numberPage } from "./gallery";
 
 const closeBtnEl = document.querySelector('.modal-close-icon');
 
@@ -17,16 +18,17 @@ const sectionGalleryEl = document.querySelector('.film__list');
 export const onClickGallery = event => {
   backdropEl.classList.add('is-open');
   modalHomeEl.classList.add('is-open');
-
+  console.log(numberPage);
   closeBtnEl.addEventListener('click', onCloseModal);
   backdropEl.addEventListener('click', onClickBackdrop);
 
   const thisMovie = new TheMovieApi();
-  const filmsFindEl = thisMovie.fetchTrendsFilms();
+  const filmsFindEl = thisMovie.fetchTrendsFilms(numberPage);
 
   const checkedItem = Number(event.currentTarget.id);
 
   filmsFindEl.then(data => {
+    console.log(data);
     const allFilms = data.data.results;
     searchFilmsFunction(allFilms, checkedItem)
   });
@@ -50,13 +52,14 @@ export const onClickSearch = event => {
     const allFilms = data.data.results;
     searchFilmsFunction(allFilms, checkedItem)
   });
+  
 }
 
 
 
 
 
-function searchFilmsFunction(allFilms, checkedItem) {
+export function searchFilmsFunction(allFilms, checkedItem) {
     
   const findFilms = allFilms.map(film => {
     if (film.id === checkedItem) {
@@ -151,11 +154,11 @@ export function closeModal() {
   backdropEl.removeEventListener('click', onClickBackdrop);
 }
 
-const onCloseModal = event => {
+export const onCloseModal = event => {
   return closeModal();
 };
 
-const onClickBackdrop = event => {
+export const onClickBackdrop = event => {
   if (event.target.className === 'backdrop is-open') {
     return closeModal();
   }
