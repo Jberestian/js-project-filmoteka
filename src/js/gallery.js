@@ -1,51 +1,48 @@
 import { TheMovieApi } from './themovie-api';
 import { onClickGallery } from './modal-home';
 import { createPagination } from './pagination';
+import { onClickSearch } from "./modal-home";
 
-const containerEl = document.querySelector('.film__container');
+import Notiflix from 'notiflix';
+
 const listEl = document.querySelector('.film__list');
 
 const inputFormEl = document.querySelector('.js-search-form');
-const errorEl = document.querySelector('header__input-error');
+
 
 const theMovieApi = new TheMovieApi();
 const filmsPromiseEl = theMovieApi.fetchTrendsFilms();
 const filmsGenresEl = theMovieApi.fetchGenresFilms();
-// const filmsSearchEl = theMovieApi.fetchSearchFilms();
 
-const onSubmitSearchFilms = async event => {
+const onSubmitSearchFilms = event => {
   event.preventDefault();
-  theMovieApi.fetchTrendsFilms().then(result => {
-    const value = inputFormEl[0].value;
-    theMovieApi.searchQuery = value;
-    console.log('result.data.results :', result);
-    console.log(' 123:', theMovieApi.searchQuery);
+  const clicks = document.querySelector('.header__logo')
+  if (inputFormEl[0].value === '') {
+    return clicks.click()
+  }
+  theMovieApi.fetchSearchFilms(inputFormEl[0].value).then(result => {
 
-    trendsFilms(result.data.results);
+    if (result.data.total_results === 0) {
+      listEl.innerHTML = ''
+      Notiflix.Report.failure('Упс...', 'Ваш поиск не дал результатов. Такого фильма нет!', 'Обновить', function cb() {
+        clicks.click()
+      });
+      return
+    }
+    listEl.innerHTML = ''
+    trendsFilms(result.data);
+    return
   });
 
-  console.dir(inputFormEl[0].value);
 
-    if (data.total_pages === 0) {
-      // errorEl.style.opacity = 1;
-    } else {
-      changeData(data).then(() => {
-        listEl.innerHTML = markupItems(data.results);
-        // errorEl.style.opacity = 0;
-      });
-    }
-  } catch (err) {
-    console.log(err);
-  }
 
 };
 
 inputFormEl.addEventListener('input', onSubmitSearchFilms);
 
 filmsPromiseEl.then(result => {
-  const films = result.data.results;
+  const films = result.data;
   trendsFilms(films);
-  // console.log(result);
 
   const pagination = createPagination({
     totalItems: result.data.total_results,
@@ -54,16 +51,17 @@ filmsPromiseEl.then(result => {
   });
 
   pagination.on('afterMove', event => {
-    const currentPage = event.page;
-    // theMovieApi.page = currentPage;
-    // theMovieApi.incrementPage();
+    let currentPage = event.page;
+    console.log(event);
 
-    console.log(currentPage);
     theMovieApi
-      .fetchTrendsFilms(event.page)
+    .fetchTrendsFilms(currentPage)
       .then(result => {
-        trendsFilms(films);
-        console.log(films);
+        const paginationFilms = result.data
+        listEl.innerHTML = '';
+        window.scrollTo(0, 0)
+        trendsFilms(paginationFilms);
+        currentPage += 1
         return;
       })
       .catch(error => {
@@ -90,6 +88,9 @@ export function getNumberFilms(item) {
 }
 
 function trendsFilms(films) {
+  
+  if (films.total_results === 20000) {
+    films = films.results
   const markupItems = films
     .map(film => {
       return `
@@ -114,4 +115,34 @@ function trendsFilms(films) {
   listEl.insertAdjacentHTML('beforeend', markupItems);
   const filmsCheck = document.querySelectorAll('.film__item');
   filmsCheck.forEach(film => film.addEventListener('click', onClickGallery));
+  return films
+  }
+  else {
+    films = films.results
+  const markupItems = films
+    .map(film => {
+      return `
+        <li class="film__item" id="${film.id}">
+          <img class="film__img" src="https://image.tmdb.org/t/p/w500/${
+            film.poster_path
+          }" alt=${film.original_title}>
+          <h3 class="film__name">${film.title}</h3>
+          <p class="film__genre">
+            ${film.genre_ids.map(item => {
+              item = getNumberFilms(item);
+              return ` ${item}`;
+            })}
+            <span class="film__date-release">| ${film.release_date.slice(
+              0,
+              4
+            )}</span>
+          </p>
+        </li>`;
+    })
+    .join('');
+  listEl.insertAdjacentHTML('beforeend', markupItems);
+  const searchCheck = document.querySelectorAll('.film__item');
+  searchCheck.forEach(film => film.addEventListener('click', onClickSearch));
+  return films
+  }
 }

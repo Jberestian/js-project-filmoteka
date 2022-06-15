@@ -7,10 +7,10 @@ const container = document.querySelector('#pagination');
 
 export const createPagination = ({ totalItems, totalPages, page } = {}) => {
   const options = {
-    totalItems: 2000,
-    itemsPerPage: 20,
+    totalItems,
+    itemsPerPage: totalItems / totalPages,
     visiblePages: 5,
-    page: 2,
+    page,
     centerAlign: true,
     firstItemClassName: 'tui-first-child',
     lastItemClassName: 'tui-last-child',
