@@ -1,7 +1,4 @@
 import Pagination from 'tui-pagination';
-import TheMovieApi, { TheMovieApi } from './themovie-api';
-
-const TheMovieApi = new TheMovieApi();
 
 const container = document.querySelector('#pagination');
 
